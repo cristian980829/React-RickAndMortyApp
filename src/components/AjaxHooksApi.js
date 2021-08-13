@@ -24,13 +24,34 @@ export default function AjaxHooksApi(){
 
     const [characters, setCharacters] = useState([])
 
+    // useEffect(() => {
+    //     let url= 'https://rickandmortyapi.com/api/character';
+    //     fetch(url)
+    //         .then((res)=>res.json())
+    //         .then((json)=>{
+    //             console.log(json.results);
+    //             json.results.forEach(el => {
+    //                 let character = {
+    //                     id:el.id,
+    //                     name:el.name,
+    //                     gender:el.gender,
+    //                     avatar:el.image,
+    //                     status:el.status
+    //                 }
+                    
+    //                 setCharacters((characters)=>[...characters,character])
+    //             });
+    //         });
+    //         //console.log(character);
+        
+    // }, [])
+
+    //await and async
     useEffect(() => {
-        let url= 'https://rickandmortyapi.com/api/character';
-        fetch(url)
-            .then((res)=>res.json())
-            .then((json)=>{
-                console.log(json.results);
-                json.results.forEach(el => {
+        const getCharacters = async(url)=>{
+            let res = await fetch(url),
+                json = await res.json();
+                json.results.forEach((el) => {
                     let character = {
                         id:el.id,
                         name:el.name,
@@ -41,8 +62,9 @@ export default function AjaxHooksApi(){
                     
                     setCharacters((characters)=>[...characters,character])
                 });
-            });
-            //console.log(character);
+            
+        }
+        getCharacters('https://rickandmortyapi.com/api/character');
         
     }, [])
 
