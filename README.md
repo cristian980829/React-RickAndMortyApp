@@ -1,4 +1,4 @@
-# Rick and morty app
+# Rick And Morty App
 
 This is a practice project
 
